@@ -192,24 +192,26 @@
 .callout[data-callout="saos-passive"]     { --callout-color: 80, 90, 100; }
 
 /* ==========================================================================
-   우하단 플로팅 목차(TOC) 모바일 터치 대응 디자인
+   우하단 플로팅 목차(TOC) + 맨 위로 가기(Top) 버튼 최종 수정본
    ========================================================================== */
+
+/* 1. 목차 스타일 */
 .toc {
   position: fixed;
-  bottom: 2rem;
+  bottom: 5.5rem; /* 탑 버튼 공간 확보를 위해 위로 올림 */
   right: 2rem;
   z-index: 9999;
   background-color: var(--light);
   border: 1px solid var(--lightgray);
   border-radius: 12px;
-  padding: 1rem;
+  padding: 0.8rem 1.2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   max-width: 280px;
-  max-height: 50vh;
+  max-height: 45vh;
   overflow-y: auto;
-  transition: all 0.2s ease;
+  cursor: pointer;
 
-  /* 기본적으로 리스트 숨김 */
+  /* 기본 상태: 목록 숨김 */
   ul {
     display: none;
     list-style: none;
@@ -224,37 +226,69 @@
       a {
         color: var(--darkgray);
         text-decoration: none;
-        display: block; /* 터치 영역 확대 */
+        display: block;
       }
       &.depth-3 { padding-left: 0.75rem; font-size: 0.85rem; }
       &.depth-4 { padding-left: 1.5rem; font-size: 0.8rem; }
     }
   }
 
-  /* [데스크톱] 마우스 올리면 열림 */
-  &:hover ul {
-    display: block;
-  }
-
-  /* [모바일] 클릭/터치해서 active 클래스가 붙으면 열림 */
-  &.active {
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  /* 데스크톱 마우스 오버 or 모바일 터치(active 클래스) 시 오픈 */
+  &:hover, &.active {
     ul {
       display: block;
     }
   }
 }
 
-@media (max-width: 768px) {
-  .toc {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    max-width: 240px;
+/* 2. 맨 위로 가기 (Top) 플로팅 버튼 스타일 */
+#scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  color: var(--pageBackground);
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* 기본 숨김 -> 스크롤 시 등장 애니메이션 */
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+
+  &.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  &:hover {
+    transform: scale(1.1);
   }
 }
 
-/* 스크립트 자동 삽입을 위한 편법 (Content 속성 활용) */
-body::after {
-  content: "";
-  display: none;
+/* 모바일 전용 여백 최적화 */
+@media (max-width: 768px) {
+  .toc {
+    bottom: 5rem;
+    right: 1.5rem;
+    max-width: 240px;
+  }
+  #scroll-top-btn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 42px;
+    height: 42px;
+  }
 }
