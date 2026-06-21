@@ -98,8 +98,29 @@ plugins:
   - source: github:quartz-community/roam
     enabled: false
     order: 92
+
+  # --------------------------------------------------------
+  # [적용 완료] 1. Modern & Clean 컨셉 폰트 플러그인 설정
+  # --------------------------------------------------------
   - source: github:quartz-community/fonts
     enabled: true
+    options:
+      fontOrigin: googleFonts
+      useThemeFonts: false # 테마 기본 서체 대신 커스텀 설정을 명확히 적용
+      title:
+        name: "Montserrat"
+        weights: [700]
+      header:
+        name: "Noto Sans KR"
+        weights: [700]
+      body:
+        name: "Inter"
+        weights: [400, 600]
+        includeItalic: true
+      code:
+        name: "JetBrains Mono"
+        weights: [400]
+
   - source: github:quartz-community/remove-draft
     enabled: true
   - source: github:quartz-community/explicit-publish
