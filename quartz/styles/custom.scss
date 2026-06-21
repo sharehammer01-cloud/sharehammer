@@ -190,3 +190,90 @@
 .callout[data-callout="saos-defence"]     { --callout-color: 45, 130, 80; }
 .callout[data-callout="saos-deployment"]  { --callout-color: 85, 92, 100; }
 .callout[data-callout="saos-passive"]     { --callout-color: 80, 90, 100; }
+
+/* ==========================================================================
+   우하단 플로팅 목차(TOC) 커스텀 디자인
+   ========================================================================== */
+.toc {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  background-color: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 280px;
+  max-height: 50vh;
+  overflow-y: auto;
+  
+  /* 처음에는 제목만 보이고 본문 리스트는 숨김 처리 (CSS 토글 효과) */
+  transition: all 0.3s ease;
+
+  button#toc-toggle {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    font-weight: 700;
+    color: var(--secondary);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    &::after {
+      content: "↕";
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+  }
+
+  /* 데스크톱/모바일 공통: 평소에는 접혀있다가 마우스를 올리거나 터치 시 펼쳐짐 */
+  ul {
+    display: none;
+    list-style: none;
+    padding-left: 0;
+    margin: 0.75rem 0 0 0;
+    border-top: 1px solid var(--lightgray);
+    padding-top: 0.5rem;
+
+    li {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+
+      a {
+        color: var(--darkgray);
+        text-decoration: none;
+        &:hover {
+          color: var(--secondary);
+          text-decoration: underline;
+        }
+      }
+      
+      /* 목차 깊이별 들여쓰기 */
+      &.depth-3 { padding-left: 0.75rem; font-size: 0.85rem; }
+      &.depth-4 { padding-left: 1.5rem; font-size: 0.8rem; }
+    }
+  }
+
+  /* 마우스를 올리면 전체 목차 리스트가 깔끔하게 노출됨 */
+  &:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    ul {
+      display: block;
+    }
+  }
+}
+
+/* 스마트폰 등 모바일 환경 최적화 */
+@media (max-width: 768px) {
+  .toc {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    max-width: 240px;
+    opacity: 0.95;
+  }
+}
