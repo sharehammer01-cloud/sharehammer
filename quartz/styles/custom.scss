@@ -1,198 +1,5 @@
-@use "./variables.scss" as *;
-
-// put your custom CSS here!
-
-/* =========================================================
-   SAOS 숫자형 능력 콜아웃 v5 (Quartz 최적화 버전)
-   사용 구조:
-   > [!saos-hero] Your Hero Phase **6**
-   ========================================================= */
-
-.callout[data-callout^="saos-"] {
-  position: relative;
-  margin: 1.2em 0;
-  padding: 0;
-
-  border: 1px solid rgb(var(--callout-color));
-  border-left-width: 5px;
-  border-radius: 8px;
-
-  background: rgba(var(--callout-color), 0.055);
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-/* 제목 바 */
-.callout[data-callout^="saos-"] > .callout-title {
-  position: relative;
-  min-height: 36px;
-  margin: 0;
-  padding: 7px 52px 7px 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  color: var(--saos-title-color, #ffffff);
-  background: rgb(var(--callout-color));
-
-  border: 0;
-  border-radius: 0;
-
-  font-size: 0.82em;
-  font-weight: 700;
-  line-height: 1.35;
-  box-sizing: border-box;
-}
-
-/* Quartz 기본 아이콘 및 접기 화살표 숨김 */
-.callout[data-callout^="saos-"] > .callout-title .fold-callout-icon,
-.callout[data-callout^="saos-"] > .callout-title > svg,
-.callout[data-callout^="saos-"] > .callout-title .callout-icon {
-  display: none !important;
-}
-
-.callout[data-callout^="saos-"] > .callout-title .callout-title-inner {
-  position: relative;
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  flex: 1;
-  text-align: left;
-}
-
-/* 글자색 강제 통일 */
-.callout[data-callout^="saos-"] > .callout-title,
-.callout[data-callout^="saos-"] > .callout-title .callout-title-inner,
-.callout[data-callout^="saos-"] > .callout-title .callout-title-inner > *,
-.callout[data-callout^="saos-"] > .callout-title strong,
-.callout[data-callout^="saos-"] > .callout-title em,
-.callout[data-callout^="saos-"] > .callout-title a {
-  color: var(--saos-title-color, #ffffff) !important;
-}
-
-/* =========================================================
-   사각형 숫자 배지 (우측 정렬)
-   ========================================================= */
-.callout[data-callout^="saos-"] > .callout-title .callout-title-inner > strong:last-child {
-  position: absolute;
-  top: 50%;
-  right: -45px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 40px;
-  height: 28px;
-  margin: 0;
-  padding: 0;
-
-  color: #1e1b15 !important; /* 숫자색 유지 */
-  background: #f4f0df;
-
-  border: 2px solid rgba(255, 255, 255, 0.72);
-  border-radius: 4px;
-  box-sizing: border-box;
-
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.12em;
-  font-weight: 900;
-  line-height: 1;
-  transform: translateY(-50%);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
-}
-
-/* 본문 */
-.callout[data-callout^="saos-"] > .callout-content {
-  margin: 0;
-  padding: 12px 14px 0;
-  line-height: 1.62;
-  box-sizing: border-box;
-  overflow: visible;
-}
-
-.callout[data-callout^="saos-"] .callout-content > p {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.callout[data-callout^="saos-"] .callout-content > p:first-child {
-  margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 1.08em;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-}
-
-.callout[data-callout^="saos-"] .callout-content strong:first-child {
-  font-weight: 800;
-}
-
-/* =========================================================
-   키워드 바 (Quartz 테마 변수로 수정)
-   ========================================================= */
-.callout[data-callout^="saos-"] .saos-keywords {
-  display: flex;
-  align-items: stretch;
-  width: calc(100% + 28px);
-  margin: 14px -14px 0;
-  padding: 0;
-  border-top: 1px solid rgb(var(--callout-color));
-  background: var(--light);
-
-  font-size: 0.85em;
-  line-height: 1.2;
-  box-sizing: border-box;
-}
-
-.callout[data-callout^="saos-"] .saos-keywords > span {
-  display: flex;
-  align-items: center;
-  padding: 7px 12px;
-  color: var(--saos-title-color, #ffffff);
-  background: rgb(var(--callout-color));
-  font-weight: 800;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.callout[data-callout^="saos-"] .saos-keywords > b {
-  display: flex;
-  align-items: center;
-  min-width: 0;
-  padding: 7px 10px;
-  color: var(--dark);
-  background: var(--light);
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.callout[data-callout^="saos-"] .callout-content > .saos-keywords:last-child {
-  margin-bottom: 0 !important;
-}
-
-.callout[data-callout^="saos-"] .callout-content:has(> .saos-keywords:last-child) {
-  padding-bottom: 0 !important;
-}
-
-/* =========================================================
-   단계별 색상 정의
-   ========================================================= */
-.callout[data-callout="saos-turn-start"]  { --callout-color: 35, 35, 35; }
-.callout[data-callout="saos-hero"]        { --callout-color: 218, 170, 20; }
-.callout[data-callout="saos-movement"]    { --callout-color: 110, 118, 126; }
-.callout[data-callout="saos-shooting"]    { --callout-color: 40, 105, 180; }
-.callout[data-callout="saos-charge"]      { --callout-color: 220, 112, 25; }
-.callout[data-callout="saos-combat"]      { --callout-color: 175, 45, 45; }
-.callout[data-callout="saos-turn-end"]    { --callout-color: 120, 70, 165; }
-.callout[data-callout="saos-defence"]     { --callout-color: 45, 130, 80; }
-.callout[data-callout="saos-deployment"]  { --callout-color: 85, 92, 100; }
-.callout[data-callout="saos-passive"]     { --callout-color: 80, 90, 100; }
-
 /* ==========================================================================
-   우하단 플로팅 목차(TOC) + 맨 위로 가기(Top) 버튼 최종 수정본
+   우하단 플로팅 목차(TOC) + 맨 위로 가기(Top) 버튼 (모바일 터치 락 해결 완결본)
    ========================================================================== */
 
 /* 1. 목차 스타일 */
@@ -200,7 +7,7 @@
   position: fixed;
   bottom: 5.5rem; /* 탑 버튼 공간 확보를 위해 위로 올림 */
   right: 2rem;
-  z-index: 9999;
+  z-index: 99999 !important; /* 컴포넌트 간 간섭 방지를 위해 최상위로 고정 */
   background-color: var(--light);
   border: 1px solid var(--lightgray);
   border-radius: 12px;
@@ -210,10 +17,12 @@
   max-height: 45vh;
   overflow-y: auto;
   cursor: pointer;
+  pointer-events: auto !important; /* 모바일 터치 이벤트 오작동 방지 */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   /* 기본 상태: 목록 숨김 */
   ul {
-    display: none;
+    display: none !important; /* 스크립트 제어 전까지 강제 숨김 */
     list-style: none;
     padding-left: 0;
     margin: 0.75rem 0 0 0;
@@ -221,22 +30,37 @@
     padding-top: 0.5rem;
 
     li {
-      margin: 0.5rem 0;
-      font-size: 0.9rem;
+      margin: 0.6rem 0; /* 모바일 터치 편의를 위해 간격 소폭 확대 */
+      font-size: 0.95rem;
+      
       a {
         color: var(--darkgray);
         text-decoration: none;
         display: block;
+        padding: 0.2rem 0; /* 터치 미스 방지 영역 확장 */
+        
+        &:hover {
+          color: var(--secondary);
+        }
       }
-      &.depth-3 { padding-left: 0.75rem; font-size: 0.85rem; }
-      &.depth-4 { padding-left: 1.5rem; font-size: 0.8rem; }
+      &.depth-3 { padding-left: 0.75rem; font-size: 0.88rem; }
+      &.depth-4 { padding-left: 1.5rem; font-size: 0.83rem; }
     }
   }
 
-  /* 데스크톱 마우스 오버 or 모바일 터치(active 클래스) 시 오픈 */
-  &:hover, &.active {
+  /* [데스크톱] 마우스 오버 시 오픈 */
+  &:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
     ul {
-      display: block;
+      display: block !important;
+    }
+  }
+
+  /* [모바일] 클릭/터치로 자바스크립트 active 클래스가 붙었을 때 완벽하게 오픈 */
+  &.active {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    ul {
+      display: block !important;
     }
   }
 }
@@ -246,7 +70,7 @@
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  z-index: 9999;
+  z-index: 99999 !important;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -270,7 +94,7 @@
   &.show {
     opacity: 1;
     transform: translateY(0);
-    pointer-events: auto;
+    pointer-events: auto !important;
   }
 
   &:hover {
@@ -278,17 +102,26 @@
   }
 }
 
-/* 모바일 전용 여백 최적화 */
+/* 3. 모바일 환경(태블릿/스마트폰) 레이아웃 최적화 */
 @media (max-width: 768px) {
   .toc {
     bottom: 5rem;
-    right: 1.5rem;
-    max-width: 240px;
+    right: 1.2rem; /* 우측 여백을 살짝 줄여 본문 가림 최소화 */
+    max-width: 260px;
+    
+    /* 모바일에서는 hover로 열리는 방식을 차단하여 터치 굳음 현상 근본적 해결 */
+    &:hover ul {
+      display: none !important;
+    }
+    &.active ul {
+      display: block !important;
+    }
   }
+  
   #scroll-top-btn {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 42px;
-    height: 42px;
+    bottom: 1.2rem;
+    right: 1.2rem;
+    width: 44px;
+    height: 44px;
   }
 }
