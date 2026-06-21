@@ -192,27 +192,46 @@
 .callout[data-callout="saos-passive"]     { --callout-color: 80, 90, 100; }
 
 /* ==========================================================================
-   우하단 플로팅 목차(TOC) + 맨 위로 가기(Top) 버튼 (모바일 개폐 완벽 보정)
+   우하단 플로팅 목차(TOC) 커스텀 디자인
    ========================================================================== */
-
-/* 1. 기본 목차 박스 설정 */
 .toc {
-  position: fixed !important;
-  bottom: 5.5rem;
-  right: 1.2rem;
-  z-index: 999999 !important; 
-  background-color: var(--light) !important;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  background-color: var(--light);
   border: 1px solid var(--lightgray);
   border-radius: 12px;
-  padding: 0.8rem 1.2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   max-width: 280px;
-  max-height: 45vh;
+  max-height: 50vh;
   overflow-y: auto;
-  pointer-events: auto !important;
-  -webkit-overflow-scrolling: touch;
+  
+  /* 처음에는 제목만 보이고 본문 리스트는 숨김 처리 (CSS 토글 효과) */
+  transition: all 0.3s ease;
 
-  /* 기본 상태: 목록을 완전히 숨김 */
+  button#toc-toggle {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    font-weight: 700;
+    color: var(--secondary);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    &::after {
+      content: "↕";
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+  }
+
+  /* 데스크톱/모바일 공통: 평소에는 접혀있다가 마우스를 올리거나 터치 시 펼쳐짐 */
   ul {
     display: none;
     list-style: none;
@@ -222,75 +241,39 @@
     padding-top: 0.5rem;
 
     li {
-      margin: 0.7rem 0;
-      font-size: 0.95rem;
-      
-      a {
-        color: var(--darkgray) !important;
-        text-decoration: none;
-        display: block !important;
-        padding: 0.4rem 0;
-        pointer-events: auto !important;
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
 
-        &:hover, &:active {
-          color: var(--secondary) !important;
+      a {
+        color: var(--darkgray);
+        text-decoration: none;
+        &:hover {
+          color: var(--secondary);
+          text-decoration: underline;
         }
       }
-      &.depth-3 { padding-left: 0.75rem; font-size: 0.88rem; }
-      &.depth-4 { padding-left: 1.5rem; font-size: 0.83rem; }
+      
+      /* 목차 깊이별 들여쓰기 */
+      &.depth-3 { padding-left: 0.75rem; font-size: 0.85rem; }
+      &.depth-4 { padding-left: 1.5rem; font-size: 0.8rem; }
+    }
+  }
+
+  /* 마우스를 올리면 전체 목차 리스트가 깔끔하게 노출됨 */
+  &:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    ul {
+      display: block;
     }
   }
 }
 
-/* 2. [데스크톱 환경] 마우스 오버 시 열림 처리 */
-@media (min-width: 769px) {
-  .toc:hover ul {
-    display: block !important;
-  }
-}
-
-/* 3. [모바일 환경 및 공통] active 클래스가 붙으면 무조건 열림 (우선순위 최상위 선언) */
-.toc.active ul {
-  display: block !important;
-}
-
-/* 4. 모바일 전용 여백 및 크기 조정 */
+/* 스마트폰 등 모바일 환경 최적화 */
 @media (max-width: 768px) {
   .toc {
-    bottom: 5rem;
-    right: 1.2rem;
-    max-width: 260px;
-  }
-}
-
-/* 5. 맨 위로 가기 (Top) 플로팅 버튼 */
-#scroll-top-btn {
-  position: fixed !important;
-  bottom: 1.2rem;
-  right: 1.2rem;
-  z-index: 999999 !important;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: var(--secondary);
-  color: var(--pageBackground);
-  border: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  opacity: 0;
-  transform: translateY(20px);
-  pointer-events: none;
-  transition: all 0.3s ease;
-
-  &.show {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto !important;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    max-width: 240px;
+    opacity: 0.95;
   }
 }
