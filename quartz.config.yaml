@@ -235,6 +235,8 @@ plugins:
   - source: github:quartz-community/footer
     enabled: true
     options:
+	# 1. 만약 아래처럼 text나 custom 항목이 제공된다면 원하는 문구를 적어줍니다.
+    	  text: "© 2026 Chosenhammer. All rights reserved."
       links:
         GitHub: https://github.com/jackyzha0/quartz
         Discord Community: https://discord.gg/cRFFHYye7t

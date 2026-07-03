@@ -3,6 +3,14 @@
 // put your custom CSS here!
 
 /* =========================================================
+   [추가] 글로벌 단어 잘림 방지 설정
+   ========================================================= */
+body, .page {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* =========================================================
    SAOS 숫자형 능력 콜아웃 v5 (Quartz 최적화 버전)
    사용 구조:
    > [!saos-hero] Your Hero Phase **6**
@@ -20,6 +28,10 @@
   background: rgba(var(--callout-color), 0.055);
   overflow: hidden;
   box-sizing: border-box;
+  
+  // 콜아웃 전체 단어 잘림 방지
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* 제목 바 */
@@ -208,6 +220,10 @@
   max-height: 50vh;
   overflow-y: auto;
   
+  // 목차 내부 단어 잘림 방지
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  
   /* 처음에는 제목만 보이고 본문 리스트는 숨김 처리 (CSS 토글 효과) */
   transition: all 0.3s ease;
 
@@ -243,6 +259,7 @@
     li {
       margin: 0.5rem 0;
       font-size: 0.9rem;
+      line-height: 1.4; // 줄바꿈 시 가독성을 위한 행간 조절
 
       a {
         color: var(--darkgray);
