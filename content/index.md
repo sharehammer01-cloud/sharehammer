@@ -1,6 +1,11 @@
 ---
-title: Welcome to Quartz
+title: Welcome to Sharehammer
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+조선해머는 워해머를 처음 접하는 사람부터 오랫동안 미니어처 게임을 즐겨온 플레이어까지 함께 즐길 수 있는 워해머 취미 블로그입니다.
+
+워해머 40,000, 에이지 오브 지그마, 호루스 헤러시를 중심으로 세계관 소개, 룰 정리, 번역 자료, 입문 가이드, 게임 팁, 모델 리뷰, 커뮤니티 소식 등을 다룹니다.
+
+복잡하게 느껴질 수 있는 워해머의 설정과 규칙을 최대한 쉽게 풀어내고, 한국어로 편하게 찾아볼 수 있는 자료를 만드는 것을 목표로 합니다.
+
+조선해머는 단순한 정보 정리를 넘어, 더 많은 사람들이 워해머를 시작하고 오래 즐길 수 있도록 돕는 취미 공간입니다.
