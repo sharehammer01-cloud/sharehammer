@@ -73,10 +73,20 @@ body, .page {
   text-align: left;
 }
 
+/* Quartz에서는 제목 텍스트가 p 안에 들어가므로 p 여백 제거 */
+.callout[data-callout^="saos-"] > .callout-title .callout-title-inner > p {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  color: var(--saos-title-color, #ffffff) !important;
+}
+
 /* 글자색 강제 통일 */
 .callout[data-callout^="saos-"] > .callout-title,
 .callout[data-callout^="saos-"] > .callout-title .callout-title-inner,
 .callout[data-callout^="saos-"] > .callout-title .callout-title-inner > *,
+.callout[data-callout^="saos-"] > .callout-title .callout-title-inner > p,
+.callout[data-callout^="saos-"] > .callout-title .callout-title-inner > p > *,
 .callout[data-callout^="saos-"] > .callout-title strong,
 .callout[data-callout^="saos-"] > .callout-title em,
 .callout[data-callout^="saos-"] > .callout-title a {
@@ -84,9 +94,18 @@ body, .page {
 }
 
 /* =========================================================
-   사각형 숫자 배지 (우측 정렬)
+   사각형 숫자 배지 (Quartz 구조 대응)
+   사용:
+   > [!saos-hero] Your Hero Phase **6**
+
+   Quartz 구조:
+   .callout-title-inner > p > strong:last-child
    ========================================================= */
-.callout[data-callout^="saos-"] > .callout-title .callout-title-inner > strong:last-child {
+.callout[data-callout^="saos-"]
+  > .callout-title
+  .callout-title-inner
+  > p
+  > strong:last-child {
   position: absolute;
   top: 50%;
   right: -45px;
@@ -192,16 +211,55 @@ body, .page {
 /* =========================================================
    단계별 색상 정의
    ========================================================= */
-.callout[data-callout="saos-turn-start"]  { --callout-color: 35, 35, 35; }
-.callout[data-callout="saos-hero"]        { --callout-color: 218, 170, 20; }
-.callout[data-callout="saos-movement"]    { --callout-color: 110, 118, 126; }
-.callout[data-callout="saos-shooting"]    { --callout-color: 40, 105, 180; }
-.callout[data-callout="saos-charge"]      { --callout-color: 220, 112, 25; }
-.callout[data-callout="saos-combat"]      { --callout-color: 175, 45, 45; }
-.callout[data-callout="saos-turn-end"]    { --callout-color: 120, 70, 165; }
-.callout[data-callout="saos-defence"]     { --callout-color: 45, 130, 80; }
-.callout[data-callout="saos-deployment"]  { --callout-color: 85, 92, 100; }
-.callout[data-callout="saos-passive"]     { --callout-color: 80, 90, 100; }
+.callout[data-callout="saos-turn-start"]  {
+  --callout-color: 35, 35, 35;
+  --saos-title-color: #ffffff;
+}
+
+.callout[data-callout="saos-hero"] {
+  --callout-color: 218, 170, 20;
+  --saos-title-color: #ffffff;
+}
+
+.callout[data-callout="saos-movement"] {
+  --callout-color: 110, 118, 126;
+  --saos-title-color: #ffffff;
+}
+
+.callout[data-callout="saos-shooting"] {
+  --callout-color: 40, 105, 180;
+  --saos-title-color: #ffffff;
+}
+
+.callout[data-callout="saos-charge"] {
+  --callout-color: 220, 112, 25;
+  --saos-title-color: #ffffff;
+}
+
+.callout[data-callout="saos-combat"] {
+  --callout-color: 175, 45, 45;
+  --saos-title-color: #ffffff;
+}
+
+.callout[data-callout="saos-turn-end"] {
+  --callout-color: 120, 70, 165;
+  --saos-title-color: #ffffff;
+}
+
+.callout[data-callout="saos-defence"] {
+  --callout-color: 45, 130, 80;
+  --saos-title-color: #ffffff;
+}
+
+.callout[data-callout="saos-deployment"] {
+  --callout-color: 85, 92, 100;
+  --saos-title-color: #ffffff;
+}
+
+.callout[data-callout="saos-passive"] {
+  --callout-color: 80, 90, 100;
+  --saos-title-color: #ffffff;
+}
 
 /* ==========================================================================
    우하단 플로팅 목차(TOC) 커스텀 디자인
@@ -264,6 +322,7 @@ body, .page {
       a {
         color: var(--darkgray);
         text-decoration: none;
+
         &:hover {
           color: var(--secondary);
           text-decoration: underline;
@@ -271,14 +330,22 @@ body, .page {
       }
       
       /* 목차 깊이별 들여쓰기 */
-      &.depth-3 { padding-left: 0.75rem; font-size: 0.85rem; }
-      &.depth-4 { padding-left: 1.5rem; font-size: 0.8rem; }
+      &.depth-3 {
+        padding-left: 0.75rem;
+        font-size: 0.85rem;
+      }
+
+      &.depth-4 {
+        padding-left: 1.5rem;
+        font-size: 0.8rem;
+      }
     }
   }
 
   /* 마우스를 올리면 전체 목차 리스트가 깔끔하게 노출됨 */
   &:hover {
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+
     ul {
       display: block;
     }
